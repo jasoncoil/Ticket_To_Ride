@@ -1,4 +1,40 @@
 <p id="notice"><%= notice %></p>
+<div class = "Game_ID_Display">
+<h1> Game ID: <%= @game.id %></h1>
+</div>
+<p></p>
+<div class = "Score_Display">
+<table>
+  <th>Player</th>
+  <th>Current Score</th>
+  <th>Completed Tickets</th>
+  <th>Uncompleted Tickets</th>
+  <th>Unused Station Score</th>
+  <th>Longest Train Route</th>
+  <th>Train Route Bonus</th>
+  <th><b>Total Score</b></th>
 
+    <% @scores.each do |score| %>
+      <tr>
+        <td><%=score.player.name %></td>
+        <td><%=score.current_score %></td>
+        <td><%=score.completed_tickets %></td>
+        <td><%=score.uncompleted_tickets %></td>
+        <td><%=score.unused_station_score %></td>
+        <td><%=score.longest_train_route %></td>
+        <td><%   if @longest_route == score %>
+                    10
+                 <%else %>
+                   0
+                 <%end %></td>
+        <td><b><%=score.total_score %></b></td>
+      </tr>
+    <% end %>
+
+</table>
+</div>
+
+
+<p></p>
 <%= link_to 'Edit', edit_game_path(@game) %> |
 <%= link_to 'Back', games_path %>

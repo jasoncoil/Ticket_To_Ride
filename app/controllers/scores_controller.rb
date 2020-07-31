@@ -15,6 +15,7 @@ class ScoresController < ApplicationController
   # GET /scores/new
   def new
     @score = Score.new
+
   end
 
   # GET /scores/1/edit
@@ -24,11 +25,19 @@ class ScoresController < ApplicationController
   # POST /scores
   # POST /scores.json
   def create
-    @score = Score.new(score_params)
+    @score = Score.new(
+        game_id: params[:score][:game_id],
+        player_id: player_id,
+        current_score: params[:score][:current_score],
+        completed_tickets: params[:score][:completed_tickets],
+        uncompleted_tickets: params[:score][:uncompleted_tickets],
+        unused_train_stations: params[:score][:unused_train_stations],
+        longest_train_route: params[:score][:longest_train_route]
+    )
 
     respond_to do |format|
       if @score.save
-        format.html { redirect_to @score, notice: 'Score was successfully created.' }
+        format.html { redirect_to game_path params[:score][:game_id], notice: 'Score was successfully created.' }
         format.json { render :show, status: :created, location: @score }
       else
         format.html { render :new }
@@ -69,6 +78,13 @@ class ScoresController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def score_params
-      params.fetch(:score, {})
+      params.require(:score).permit(:game_id, :player_name, :current_score,
+                                    :completed_tickets, :uncompleted_tickets, :unused_train_stations, :longest_train_route)
     end
+
+  def player_id
+    player = Player.find_by(name: score_params[:player_name])
+    return player.id
+  end
+
 end

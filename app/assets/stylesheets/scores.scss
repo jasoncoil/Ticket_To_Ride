@@ -1,3 +1,31 @@
 // Place all the styles related to the scores controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: https://sass-lang.com/
+body{
+  text-align: center;
+}
+h1{
+  background-color: #99cbee;
+  width: 400px;
+  margin: auto;
+  padding-bottom: 10px;
+  padding-top: 10px;
+}
+
+.Score_Input_Display{
+  background-color: #99cbee;
+  width: 400px;
+  margin: auto;
+}
+
+input[type=submit]{
+  background: linear-gradient(30deg, rgba(212,147,48,1) 17%, rgba(51,194,214,1) 87%);
+  font-size: 15px;
+  font-weight: bold;
+  border-radius: 5px;
+}
+input[type=text]{
+  background-color: #d5d5d5;
+  border: 3px solid #e58d40;
+  border-radius: 5px;
+}

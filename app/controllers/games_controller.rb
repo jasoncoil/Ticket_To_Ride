@@ -10,6 +10,8 @@ class GamesController < ApplicationController
   # GET /games/1
   # GET /games/1.json
   def show
+    @scores = @game.scores
+    @longest_route = @game.scores.max {|a,b| a.longest_train_route<=>b.longest_train_route}
   end
 
   # GET /games/new
@@ -17,6 +19,12 @@ class GamesController < ApplicationController
     @game = Game.new
   end
 
+  def lobby
+  end
+
+  def join
+    redirect_to controller: 'scores', action: 'new', game_id: params[:game_id], player_name: params[:player_name]
+  end
   # GET /games/1/edit
   def edit
   end

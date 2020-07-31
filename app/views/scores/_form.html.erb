@@ -10,8 +10,36 @@
       </ul>
     </div>
   <% end %>
+<div class = "Score_Input_Display">
+  <div class = "field">
+    <%=form.label :player_name %>
+    <%=form.text_field :player_name %>
+    <div class = "field">
+      <%=form.label :game_id %>
+      <%=form.text_field :game_id %>
+  <div class = "field">
+    <%=form.label :current_score %>
+    <%=form.text_field :current_score %>
+  </div>
+  <div class = "field">
+    <%=form.label :completed_tickets %>
+    <%=form.text_field :completed_tickets %>
+  </div>
+  <div class = "field">
+    <%=form.label :uncompleted_tickets %>
+    <%=form.text_field :uncompleted_tickets %>
+  </div>
+  <div class = "field">
+    <%=form.label :unused_train_stations %>
+    <%=form.text_field :unused_train_stations %>
+  </div>
+  <div class = "field">
+    <%=form.label :longest_train_route %>
+    <%=form.text_field :longest_train_route %>
+  </div>
 
   <div class="actions">
     <%= form.submit %>
   </div>
+    </div>
 <% end %>
