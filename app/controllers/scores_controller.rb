@@ -50,7 +50,11 @@ class ScoresController < ApplicationController
   # PATCH/PUT /scores/1.json
   def update
     respond_to do |format|
-      if @score.update(score_params)
+      byebug
+      if @score.update({
+                           player_attributes: {name: score_params[:player_name]},
+                           **update_score_params.to_h.symbolize_keys
+                       })
         format.html { redirect_to @score, notice: 'Score was successfully updated.' }
         format.json { render :show, status: :ok, location: @score }
       else
@@ -81,6 +85,11 @@ class ScoresController < ApplicationController
       params.require(:score).permit(:game_id, :player_name, :current_score,
                                     :completed_tickets, :uncompleted_tickets, :unused_train_stations, :longest_train_route)
     end
+
+  def update_score_params
+    params.require(:score).permit(:game_id, :current_score,
+                                  :completed_tickets, :uncompleted_tickets, :unused_train_stations, :longest_train_route)
+  end
 
   def player_id
     player = Player.find_by(name: score_params[:player_name])

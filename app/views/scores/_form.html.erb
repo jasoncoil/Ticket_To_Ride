@@ -13,7 +13,7 @@
 <div class = "Score_Input_Display">
   <div class = "field">
     <%=form.label :player_name %>
-    <%=form.text_field :player_name %>
+    <%=form.text_field :player_name, value: score.player.name %>
     <div class = "field">
       <%=form.label :game_id %>
       <%=form.text_field :game_id %>
